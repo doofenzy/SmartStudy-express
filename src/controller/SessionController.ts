@@ -36,27 +36,29 @@ const createSession = async (req: any, res: any) => {
 
 const deleteSession = async (req: any, res: any) => {
   const sessionId = req.params.id;
-  const userId = req.user;
+  const userId = req.user.id;
 
   try {
     const session = await Session.findOneAndDelete({
-      id: sessionId,
+      _id: sessionId,
       userId: userId,
     });
-    res.status(200).json({ message: 'Session deleted successfully', session });
+    if (!session) {
+      return res.status(404).json({ message: 'Session not found' });
+    }
+
+    res.status(200).json({ message: 'Session deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error deleting session', error });
   }
 };
 
 const getSession = async (req: any, res: any) => {
-  const userId = req.user;
+  const userId = req.user.id;
 
   try {
-    const sessions = await Session.find({ userId: userId.userId });
-    res
-      .status(200)
-      .json({ message: 'Sessions fetched successfully', sessions });
+    const sessions = await Session.find({ userId: userId });
+    res.status(200).json(sessions);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching sessions', error });
   }
