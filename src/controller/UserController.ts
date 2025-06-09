@@ -48,8 +48,6 @@ const login = async (
 ): Promise<void> => {
   const { username, password } = req.body;
 
-  console.log('Login attempt with username:', username, password);
-
   try {
     const user = await User.findOne({ username });
 
@@ -58,11 +56,10 @@ const login = async (
       return;
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    console.log('Password match result:', isMatch);
+    const isMatch = await user.comparePassword(password);
 
     if (!isMatch) {
-      res.status(401).json({ message: 'incorrect password' });
+      res.status(401).json({ message: 'Invalid username or password' });
       return;
     }
 
