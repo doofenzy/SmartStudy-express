@@ -27,7 +27,7 @@ const SessionSchema = new Schema(
       required: true,
       trim: true,
     },
-    startime: {
+    startTime: {
       type: Date,
       required: true,
     },
