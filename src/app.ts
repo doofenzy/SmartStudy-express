@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import auth from './routes/UserRoute';
 import session from './routes/SessionRoute';
+import goal from './routes/GoalRoute';
 
 dotenv.config();
 
@@ -19,5 +20,6 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/session', session);
+app.use('/api/v1/goal', goal);
 
 export default app;

@@ -43,4 +43,4 @@ const GoalSchema = new Schema(
   }
 );
 
-export const Goal = model<'Goal'>('Goal', GoalSchema);
+export const Goal = model<IGoal>('Goal', GoalSchema);
