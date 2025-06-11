@@ -4,7 +4,7 @@ export interface ISession {
   userId: Types.ObjectId;
   subject: string;
   topic: string;
-  startime: Date;
+  startTime: Date;
   endTime: Date;
   notes: string;
   duration: number;

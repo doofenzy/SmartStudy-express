@@ -4,7 +4,7 @@ export interface IGoal {
   userId: Types.ObjectId;
   subject: string;
   weeklyTargetHours: string;
-  completedHours: Date;
+  completedHours: Number;
   weekStartDate: Date;
   weekEndDate: string;
 }
@@ -27,6 +27,7 @@ const GoalSchema = new Schema(
     },
     completedHours: {
       type: Number,
+      default: 0,
       required: true,
     },
     weekStartDate: {
